@@ -1,5 +1,4 @@
 using Microsoft.Playwright;
-using System.Threading.Tasks;
 
 namespace learning_playwright_csharp
 {
