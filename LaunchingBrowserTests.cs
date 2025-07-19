@@ -78,7 +78,7 @@ namespace learning_playwright_csharp
         public async Task LaunchBrowserAnotherOptionTest()
         {
             IPlaywright playwright = await Playwright.CreateAsync();
-            IBrowser browser = await playwright["chromium"].LaunchAsync(new BrowserTypeLaunchOptions { Headless = false, Channel = "msedge" });
+            IBrowser browser = await playwright["chromium"].LaunchAsync(new BrowserTypeLaunchOptions { Headless = false});
             IBrowserContext browserContext = await browser.NewContextAsync();
             IPage page = await browserContext.NewPageAsync();
             await page.GotoAsync("https://www.google.com");
