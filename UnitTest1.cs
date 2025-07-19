@@ -19,11 +19,11 @@ namespace learning_playwright_csharp
             testSettings.Headless = false;
             testSettings.DevTool = true;
             testSettings.Channel = "chrome";
-                testSettings.SlowMo = 500;
+            testSettings.SlowMo = 500;
            
 
-            PlaywrightDriver playwrightDriver = new PlaywrightDriver(testSettings);
-            IPage page = await playwrightDriver.InitializePLaywright();
+            PlaywrightDriver playwrightDriver = new PlaywrightDriver();
+            IPage page = await playwrightDriver.InitializePLaywright(testSettings);
             await page.GotoAsync("https://google.com/");
 
         }
