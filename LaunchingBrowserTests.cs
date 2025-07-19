@@ -18,6 +18,20 @@ namespace learning_playwright_csharp
             await browserContext.CloseAsync();
             await browser.CloseAsync();
         }
-
+        [Test]
+        public async Task LaunchFirefoxBrowserTest()
+        {
+            IPlaywright playwright = await Playwright.CreateAsync();
+            IBrowser browser = await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
+            IBrowserContext browserContext = await browser.NewContextAsync();
+            IPage page = await browserContext.NewPageAsync();
+            await page.GotoAsync("https://www.google.com");
+            Console.WriteLine(await page.TitleAsync());
+            Console.WriteLine(page.Url);
+            await page.CloseAsync();
+            await browserContext.CloseAsync();
+            await browser.CloseAsync();
+        }
+       
     }
 }
