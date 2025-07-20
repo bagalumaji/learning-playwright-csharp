@@ -1,4 +1,5 @@
 ﻿using learning_playwright_csharp.Config;
+using learning_playwright_csharp.Constants;
 using Microsoft.Playwright;
 using System.Threading.Channels;
 
@@ -25,14 +26,14 @@ namespace learning_playwright_csharp.Driver
             switch (testSettings.DriverType)
             {
                 case DriverType.Chrome:
-                    launchOptions.Channel = "chrome";
+                    launchOptions.Channel = FrameworkConstants.CHROME_CHANNEL;
                     return await playwright.Chromium.LaunchAsync(launchOptions);
                 case DriverType.Firefox:
                     return await playwright.Firefox.LaunchAsync(launchOptions);
                 case DriverType.Webkit:
                     return await playwright.Webkit.LaunchAsync(launchOptions);
                 case DriverType.Edge:
-                    launchOptions.Channel = "msedge";
+                    launchOptions.Channel = FrameworkConstants.EDGE_CHANNEL;
                     return await playwright.Chromium.LaunchAsync(launchOptions);
                 default:
                     return await playwright.Chromium.LaunchAsync(launchOptions);
