@@ -1,44 +1,22 @@
 using learning_playwright_csharp.Config;
 using learning_playwright_csharp.Driver;
+using learning_playwright_csharp.TestBase;
 using Microsoft.Playwright;
 
 namespace learning_playwright_csharp
 {
-    public class Tests
+    public class Tests :TestSetup
     {
-        
-        private IPage _page;
-        private PlaywrightDriver _playwrightDriver;
-        [SetUp]
-        public async Task Setup()
-        {
-            TestSettings testSettings = new TestSettings
-            {
-                Headless = false,
-                DriverType = DriverType.Chrome,
-                SlowMo = 500,
-            };
-           
-             _playwrightDriver = new PlaywrightDriver();
-            _page = await _playwrightDriver.InitializePLaywright(testSettings);
-        }
-
         [Test]
         public async Task Test1()
         {
-            await _page.GotoAsync("https://google.com/");
+            await Page.GotoAsync("https://google.com/");
         }
 
         [Test]
         public async Task Test2()
         {
-            await _page.GotoAsync("https://github.com/");
-        }
-        [TearDown]
-        public async Task TearDown()
-        {
-            await _playwrightDriver.Browser.CloseAsync();
-            await _playwrightDriver.Browser.DisposeAsync();
+            await Page.GotoAsync("https://github.com/");
         }
     }
 }
