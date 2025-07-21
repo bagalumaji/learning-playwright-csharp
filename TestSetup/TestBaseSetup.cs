@@ -4,7 +4,7 @@ using Microsoft.Playwright;
 
 namespace learning_playwright_csharp.TestBase;
 
-public abstract class TestSetup
+public abstract class TestBaseSetup
 {
     public required IPage Page;
     private PlaywrightDriver _playwrightDriver;

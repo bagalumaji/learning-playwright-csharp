@@ -5,7 +5,7 @@ using Microsoft.Playwright;
 
 namespace learning_playwright_csharp
 {
-    public class Tests :TestSetup
+    public class TestsBase :TestBaseSetup
     {
         [Test]
         public async Task Test1()
