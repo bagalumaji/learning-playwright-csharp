@@ -6,8 +6,8 @@ namespace learning_playwright_csharp.TestBase;
 
 public abstract class TestBaseSetup
 {
-    public required IPage Page;
-    private PlaywrightDriver _playwrightDriver;
+    //public required IPage Page;
+    protected PlaywrightDriver _playwrightDriver;
     [SetUp]
     public async Task Setup()
     {
@@ -19,7 +19,7 @@ public abstract class TestBaseSetup
         };
            
         _playwrightDriver = new PlaywrightDriver(testSettings);
-        Page = await _playwrightDriver.InitializePLaywright();
+        //Page = await _playwrightDriver.InitializePLaywright();
     }
     [TearDown]
     public async Task TearDown()
