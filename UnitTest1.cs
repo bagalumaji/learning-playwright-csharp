@@ -29,6 +29,11 @@ namespace learning_playwright_csharp
             await _page.GotoAsync("https://google.com/");
         }
 
+        [Test]
+        public async Task Test2()
+        {
+            await _page.GotoAsync("https://github.com/");
+        }
         [TearDown]
         public async Task TearDown()
         {
