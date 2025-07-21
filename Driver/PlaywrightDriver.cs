@@ -1,16 +1,20 @@
 ﻿using learning_playwright_csharp.Config;
 using learning_playwright_csharp.Constants;
 using Microsoft.Playwright;
-using System.Threading.Channels;
 
 namespace learning_playwright_csharp.Driver
 {
     public class PlaywrightDriver
     {
-        public IBrowser Browser;
-        public async Task<IPage> InitializePLaywright(TestSettings testSettings)
+        private TestSettings _settings;
+        public PlaywrightDriver(TestSettings testSettings)
         {
-            Browser = await GetBrowserAsync(testSettings);
+            _settings = testSettings;
+        }
+        public IBrowser Browser;
+        public async Task<IPage> InitializePLaywright()
+        {
+            Browser = await GetBrowserAsync(_settings);
             IBrowserContext context = await Browser.NewContextAsync();
             IPage page = await context.NewPageAsync();
             return page;
