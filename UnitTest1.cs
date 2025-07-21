@@ -6,13 +6,9 @@ namespace learning_playwright_csharp
 {
     public class Tests
     {
+        private IPage _page;
         [SetUp]
-        public void Setup()
-        {
-        }
-
-        [Test]
-        public async Task Test1()
+        public async Task Setup()
         {
             TestSettings testSettings = new TestSettings
             {
@@ -22,9 +18,13 @@ namespace learning_playwright_csharp
             };
            
             PlaywrightDriver playwrightDriver = new PlaywrightDriver();
-            IPage page = await playwrightDriver.InitializePLaywright(testSettings);
-            await page.GotoAsync("https://google.com/");
+            _page = await playwrightDriver.InitializePLaywright(testSettings);
+        }
 
+        [Test]
+        public async Task Test1()
+        {
+            await _page.GotoAsync("https://google.com/");
         }
     }
 }
