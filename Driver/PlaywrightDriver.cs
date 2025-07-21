@@ -6,17 +6,17 @@ namespace learning_playwright_csharp.Driver
 {
     public class PlaywrightDriver
     {
-        private TestSettings _settings;
-        public Task<IPage> Page;
-        public Task<IBrowser> Browser;
-        public Task<IBrowserContext> BrowserContext;
+        private readonly TestSettings _settings;
+        private readonly Task<IPage> _page;
+        private readonly Task<IBrowser> _browser;
+        private readonly Task<IBrowserContext> _browserContext;
         
         public PlaywrightDriver(TestSettings testSettings)
         {
             _settings = testSettings;
-            Browser = Task.Run(InitializePLaywright);
-            BrowserContext = Task.Run(CreateBrowserContextAsync);
-            Page = Task.Run(CreateNewPageAsync);
+            _browser = Task.Run(InitializePLaywright);
+            _browserContext = Task.Run(CreateBrowserContextAsync);
+            _page = Task.Run(CreateNewPageAsync);
         }
 
         private async Task<IBrowser> InitializePLaywright()
@@ -25,14 +25,18 @@ namespace learning_playwright_csharp.Driver
         }
         private async Task<IBrowserContext> CreateBrowserContextAsync()
         {
-            return await (await Browser).NewContextAsync();
+            return await (await _browser).NewContextAsync();
         }
 
-        protected async Task<IPage> CreateNewPageAsync()
+        private async Task<IPage> CreateNewPageAsync()
         {
            return await(await CreateBrowserContextAsync()).NewPageAsync();
         }
-       
+
+        public IBrowser Browser => _browser.Result;
+        public IBrowserContext BrowserContext => _browserContext.Result;
+        public IPage Page => _page.Result;
+        
         private async Task<IBrowser> GetBrowserAsync(TestSettings testSettings)
         {
             IPlaywright playwright = await Playwright.CreateAsync();
