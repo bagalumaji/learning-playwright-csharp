@@ -18,8 +18,8 @@ public abstract class TestSetup
             SlowMo = 500,
         };
            
-        _playwrightDriver = new PlaywrightDriver();
-        Page = await _playwrightDriver.InitializePLaywright(testSettings);
+        _playwrightDriver = new PlaywrightDriver(testSettings);
+        Page = await _playwrightDriver.InitializePLaywright();
     }
     [TearDown]
     public async Task TearDown()
