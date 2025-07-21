@@ -24,7 +24,7 @@ public abstract class TestBaseSetup
     [TearDown]
     public async Task TearDown()
     {
-        await _playwrightDriver.Browser.CloseAsync();
-        await _playwrightDriver.Browser.DisposeAsync();
+        await _playwrightDriver.Browser.Result.CloseAsync();
+        await _playwrightDriver.Browser.Result.DisposeAsync();
     }
 }
