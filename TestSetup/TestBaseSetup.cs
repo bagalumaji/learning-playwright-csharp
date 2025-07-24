@@ -1,13 +1,12 @@
 ﻿using learning_playwright_csharp.Config;
 using learning_playwright_csharp.Driver;
-using Microsoft.Playwright;
 
 namespace learning_playwright_csharp.TestBase;
 
 public abstract class TestBaseSetup
 {
     //public required IPage Page;
-    protected PlaywrightDriver _playwrightDriver;
+    protected PlaywrightDriver PlaywrightDriver;
     [SetUp]
     public async Task Setup()
     {
@@ -18,15 +17,15 @@ public abstract class TestBaseSetup
             SlowMo = 500,
         };
            
-        _playwrightDriver = new PlaywrightDriver(testSettings);
+        PlaywrightDriver = new PlaywrightDriver(testSettings);
         //Page = await _playwrightDriver.InitializePLaywright();
     }
     [TearDown]
     public async Task TearDown()
     {
-        await _playwrightDriver.Page.CloseAsync();
-        await _playwrightDriver.BrowserContext.CloseAsync();
-        await _playwrightDriver.Browser.CloseAsync();
-        await _playwrightDriver.Browser.DisposeAsync();
+        await PlaywrightDriver.Page.CloseAsync();
+        await PlaywrightDriver.BrowserContext.CloseAsync();
+        await PlaywrightDriver.Browser.CloseAsync();
+        await PlaywrightDriver.Browser.DisposeAsync();
     }
 }
