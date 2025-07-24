@@ -7,13 +7,13 @@ namespace learning_playwright_csharp
         [Test]
         public async Task Test1()
         {
-            await _playwrightDriver.Page.GotoAsync("https://google.com/");
+            await PlaywrightDriver.Page.GotoAsync("https://google.com/");
         }
 
         [Test]
         public async Task Test2()
         {
-            await _playwrightDriver.Page.GotoAsync("https://github.com/");
+            await PlaywrightDriver.Page.GotoAsync("https://github.com/");
         }
     }
 }
